@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="chart"></canvas>
+
+    <script>
+        function renderChart(data) {
+            const ctx = document.getElementById('chart').getContext('2d');
+
+            const projectNames = data.map(project => project.name);
+            const topicCounts = data.map(project => {
+                return project.topics.reduce((total, topic) => {
+                    return total + topic.count;
+                }, 0);
+            });
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: projectNames,
+                    datasets: [
+                        {
+                            label: 'Topic Counts',
+                            data: topicCounts,
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1,
+                        },
+                    ],
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                        },
+                    },
+                },
+            });
+        }
+
+
+        const projectData = [
+            {
+                name: "project_1",
+                topics: [
+                    {
+                        topic: "variables",
+                        count: 24,
+                    },
+                    {
+                        topic: "data types",
+                        count: 303,
+                    },
+                    {
+                        topic: "conditionals",
+                        count: 18,
+                    },
+                    {
+                        topic: "functions",
+                        count: 7,
+                    },
+                    {
+                        topic: "DOM manipulation",
+                        count: 12,
+                    },
+                    {
+                        topic: "arrays",
+                        count: 2,
+                    },
+                    {
+                        topic: "objects",
+                        count: 3,
+                    },
+                ],
+                javascript: {
+                    score: 0,
+                    issues: [
+                        {
+                            filePath: "D:\\personal\\all-in-one tagger\\PROJECTS\\project_1\\application.js",
+                            messages: [
+                                {
+                                    ruleId: "no-unused-vars",
+                                    severity: 2,
+                                    message: "'nameValidation' is defined but never used.",
+                                    line: 10,
+                                    column: 10,
+                                    nodeType: "Identifier",
+                                    messageId: "unusedVar",
+                                    endLine: 10,
+                                    endColumn: 24,
+                                },
+                                {
+                                    ruleId: "no-unused-vars",
+                                    severity: 2,
+                                    message: "'mailValidation' is defined but never used.",
+                                    line: 33,
+                                    column: 10,
+                                    nodeType: "Identifier",
+                                    messageId: "unusedVar",
+                                    endLine: 33,
+                                    endColumn: 24,
+                                },
+                                {
+                                    ruleId: "no-unused-vars",
+                                    severity: 2,
+                                    message: "'MobileNoValidation' is defined but never used.",
+                                    line: 55,
+                                    column: 10,
+                                    nodeType: "Identifier",
+                                    messageId: "unusedVar",
+                                    endLine: 55,
+                                    endColumn: 28,
+                                },
+                                {
+                                    ruleId: "no-undef",
+                                    severity: 2,
+                                    message: "'mobileNoError' is not defined.",
+                                    line: 60,
+                                    column: 5,
+                                    nodeType: "Identifier",
+                                    messageId: "undef",
+                                    endLine: 60,
+                                    endColumn: 18,
+                                },
+                                {
+                                    ruleId: "no-unused-vars",
+                                    severity: 2,
+                                    message: "'numberValidation' is defined but never used.",
+                                    line: 77,
+                                    column: 10,
+                                    nodeType: "Identifier",
+                                    messageId: "unusedVar",
+                                    endLine: 77,
+                                    endColumn: 26,
+                                },
+                                {
+                                    ruleId: "no-unused-vars",
+                                    severity: 2,
+                                    message: "'PercentageValidation' is defined but never used.",
+                                    line: 101,
+                                    column: 10,
+                                    nodeType: "Identifier",
+                                    messageId: "unusedVar",
+                                    endLine: 101,
+                                    endColumn: 30,
+                                },
+                                {
+                                    ruleId: "no-undef",
+                                    severity: 2,
+                                    message: "'id' is not defined.",
+                                    line: 104,
+                                    column: 29,
+                                    nodeType: "Identifier",
+                                    messageId: "undef",
+                                    endLine: 104,
+                                    endColumn: 31,
+                                },
+                                {
+                                    ruleId: "no-unused-vars",
+                                    severity: 2,
+                                    message: "'CollegenameValidation' is defined but never used.",
+                                    line: 124,
+                                    column: 10,
+                                    nodeType: "Identifier",
+                                    messageId: "unusedVar",
+                                    endLine: 124,
+                                    endColumn: 31,
+                                },
+                                {
+                                    ruleId: "no-undef",
+                                    severity: 2,
+                                    message: "'id' is not defined.",
+                                    line: 127,
+                                    column: 24,
+                                    nodeType: "Identifier",
+                                    messageId: "undef",
+                                    endLine: 127,
+                                    endColumn: 26,
+                                },
+                            ],
+                            suppressedMessages: [
+                            ],
+                            errorCount: 9,
+                            fatalErrorCount: 0,
+                            warningCount: 0,
+                            fixableErrorCount: 0,
+                            fixableWarningCount: 0,
+                            source: "var NameError = document.getElementById('name-error');\nvar EmailError = document.getElementById('email-error');\nvar PhoneError = document.getElementById('mobileNo-error');\nvar IdError = document.getElementById('id-error');\nvar PercentageError = document.getElementById('percentage-error');\nvar CollegeNameError = document.getElementById('CnameError');\n\nvar text;\n\nfunction nameValidation() {\n  var Name = document.getElementById('cname').value;\n  let nameValidate = '[a-z .A-Z]+';\n  if (Name === 0) {\n    text = 'Name is required';\n    NameError.innerHTML = text;\n    return false;\n  }\n  if (Name.length < 3) {\n    text = 'Name should be greater than 3 characters';\n    NameError.innerHTML = text;\n    return false;\n  }\n  if (!Name.match(nameValidate)) {\n    text = 'Invalid Name';\n    NameError.innerHTML = text;\n    return false;\n  }\n\n  NameError.innerHTML = null;\n  return true;\n}\n\nfunction mailValidation() {\n  var mail = document.getElementById('mail').value;\n  let mailValidate = /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/;\n  if (mail.length === 0) {\n    text = 'Mail is required';\n    EmailError.innerHTML = text;\n    return false;\n  }\n  if (mail < 3) {\n    text = 'Mail should be greater than 3 characters';\n    EmailError.innerHTML = text;\n    return false;\n  }\n  if (!mail.match(mailValidate)) {\n    text = 'Mail must contain @ ';\n    EmailError.innerHTML = text;\n    return false;\n  }\n  EmailError.innerHTML = '<i class=\"fa-regular fa-circle-check\"></i>';\n  return true;\n}\n\nfunction MobileNoValidation() {\n  var mobileNumber = document.getElementById('mobile').value;\n  let mobileNoValidate = /^[0-9]{10}$/;\n  if (PhoneError.length === 0) {\n    text = 'Mobile Number is required';\n    mobileNoError.innerHTML = text;\n    return false;\n  }\n  if (mobileNumber.length !== 10) {\n    text = 'Mobile Number should be 10 digits';\n    PhoneError.innerHTML = text;\n    return false;\n  }\n  if (!mobileNumber.match(mobileNoValidate)) {\n    text = 'Mobile Number is required';\n    PhoneError.innerHTML = text;\n    return false;\n  }\n  PhoneError.innerHTML = '<i class=\"fa-regular fa-circle-check\"></i>';\n  return true;\n}\n\nfunction numberValidation() {\n  var id = document.getElementById('id').value;\n  let idValidation = /(^[0-9]+$)/;\n  if (id == null || id.trim() === '') {\n    text = 'Id is required';\n    IdError.innerHTML = text;\n    return false;\n  }\n  if (id.length < 2) {\n    text = 'Id should be in 3 digits';\n    IdError.innerHTML = text;\n    return false;\n  }\n\n  if (!id.match(idValidation)) {\n    text = 'Invalid';\n    IdError.innerHTML = text;\n    return false;\n  }\n  IdError.innerHTML = '<i class=\"fa-regular fa-circle-check\"></i>';\n  return true;\n\n}\n\nfunction PercentageValidation() {\n  var percentage = document.getElementById('percentage').value;\n  let percentagevalidation = /(^100(\\.0{1,2})?$)|(^([1-9]([0-9])?|0)(\\.[0-9]{1,2})?$)/;\n  if (percentage == null || id.trim() === '') {\n    text = 'Percentage is Required';\n    PercentageError.innerHTML = text;\n    return false;\n  }\n  if (percentage.length !== 2) {\n    text = 'percentage should be in 2 Decimal values';\n    PercentageError.innerHTML = text;\n    return false;\n  }\n\n  if (!percentage.match(percentagevalidation)) {\n    text = 'Id is Required';\n    PercentageError.innerHTML = text;\n    return false;\n  }\n  PercentageError.innerHTML = '<i class=\"fa-regular fa-circle-check\"></i>';\n  return true;\n\n}\nfunction CollegenameValidation() {\n  var cName = document.getElementById('Collegename').value;\n  let cNameValidation = /^[a-zA-Z0-9_ ]*$/;\n  if (cName == null || id.trim() === '') {\n    text = 'collegeName is Required';\n    CollegeNameError.innerHTML = text;\n    return false;\n  }\n  if (cName.length < 3) {\n    text = 'CollegeName should be greater than 3 characters &using space between characters';\n    CollegeNameError.innerHTML = text;\n    return false;\n  }\n  if (!cName.match(cNameValidation)) {\n    text = 'Invalid Name';\n    CollegeNameError.innerHTML = text;\n    return false;\n  }\n\n  CollegeNameError.innerHTML = 'Valid';\n  return true;\n}\n\n\n\n\n",
+                            usedDeprecatedRules: [
+                            ],
+                        },
+                        {
+                            filePath: "D:\\personal\\all-in-one tagger\\PROJECTS\\project_1\\applyForm.js",
+                            messages: [
+                                {
+                                    ruleId: "no-unused-vars",
+                                    severity: 2,
+                                    message: "'grid' is assigned a value but never used.",
+                                    line: 20,
+                                    column: 5,
+                                    nodeType: "Identifier",
+                                    messageId: "unusedVar",
+                                    endLine: 20,
+                                    endColumn: 9,
+                                },
+                                {
+                                    ruleId: "no-undef",
+                                    severity: 2,
+                                    message: "'Slick' is not defined.",
+                                    line: 20,
+                                    column: 16,
+                                    nodeType: "Identifier",
+                                    messageId: "undef",
+                                    endLine: 20,
+                                    endColumn: 21,
+                                },
+                            ],
+                            suppressedMessages: [
+                            ],
+                            errorCount: 2,
+                            fatalErrorCount: 0,
+                            warningCount: 0,
+                            fixableErrorCount: 0,
+                            fixableWarningCount: 0,
+                            source: "var columns = [\n  {\n    id: 'Apply',\n    name: 'apply',\n    field: 'Apply',\n    formatter: buttonFormatter\n  }\n];\nvar data = [\n  { id: 1, name: 'apply', field: 1 },\n];\nfunction buttonFormatter(row, cell, value, columnDef, dataContext) {\n  let a = dataContext.Email;\n  return '<form action=\"/companyName\" method=\"get\"><button type=\"submit\" name=\"CompanyEmail\" value=\"' + a + '\">Click</button></form>';\n}\nvar options = {\n  enableCellNavigation: true,\n  enableColumnReorder: false\n};\nvar grid = new Slick.Grid('#myGrid', data, columns, options);\n",
+                            usedDeprecatedRules: [
+                            ],
+                        },
+                    ],
+                },
+                html: {
+                    score: 0,
+                    issues: 0,
+                },
+            },
+        ];
+
+        renderChart(projectData);
+
+    </script>
+
+</body>
+
+</html>
